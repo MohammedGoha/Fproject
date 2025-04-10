@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:testing/config/cfg.dart';
 import 'dart:io';
 import '../utils/theme.dart';
 import '../utils/utils.dart';
@@ -26,7 +27,7 @@ class _SelfieScreenState extends State<SelfieScreen> {
     uploadImage(
       context: context,
       image: _image,
-      uploadUrl: 'http://192.168.1.5:5000/upload',
+      uploadUrl: '$server:5000/upload',
       nextScreen: SuccessScreen(), // Keep this as is
       filename: 'selfie.jpg',
     );

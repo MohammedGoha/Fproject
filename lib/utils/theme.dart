@@ -30,7 +30,7 @@ const Color disabledText = Color(0xFF9E9E9E);   // Disabled elements
 const String arabicFont = 'Tajawal';            // Arabic font
 const String englishFont = 'Roboto';            // English font
 
-final TextTheme appTextTheme = TextTheme(
+const TextTheme appTextTheme = TextTheme(
   headlineLarge: TextStyle(
     fontFamily: arabicFont,
     fontSize: 22.0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:testing/config/cfg.dart';
 import 'dart:convert';
 import '../utils/theme.dart';
 
@@ -21,7 +22,7 @@ class _ElectionScreenState extends State<ElectionScreen> {
 
   Future<void> fetchElectionName() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.1.5:5000/elections'));
+      final response = await http.get(Uri.parse('$server:5000/elections'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
@@ -41,7 +42,7 @@ class _ElectionScreenState extends State<ElectionScreen> {
 
   Future<void> fetchCandidates() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.1.5:5000/candidates'));
+      final response = await http.get(Uri.parse('$server:5000/candidates'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
