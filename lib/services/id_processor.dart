@@ -53,22 +53,24 @@ class IDProcessor {
       final croppedFile = await ImageCropper().cropImage(
         sourcePath: imageFile.path,
         aspectRatio: const CropAspectRatio(ratioX: 1.0, ratioY: 1.6), // ID card ratio
-        aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
         uiSettings: [
           AndroidUiSettings(
             toolbarTitle: 'Crop ID',
             toolbarColor: Colors.deepPurple,
             toolbarWidgetColor: Colors.white,
             initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false,
+            lockAspectRatio: true, // Enforce aspect ratio
+            hideBottomControls: true, // Optional: hides the bottom controls
           ),
           IOSUiSettings(
             title: 'Crop ID',
             cancelButtonTitle: 'Cancel',
             doneButtonTitle: 'Done',
+            aspectRatioLockEnabled: true, // Enforce aspect ratio on iOS
+            resetAspectRatioEnabled: false, // Disable aspect ratio reset
           ),
         ],
-        cropStyle: CropStyle.rectangle,
+        // Removed cropStyle parameter as it's no longer supported
       );
 
       // 6. Clean up
@@ -77,7 +79,7 @@ class IDProcessor {
 
       return croppedFile != null ? File(croppedFile.path) : imageFile;
     } catch (e) {
-      print('Error processing ID: $e');
+      debugPrint('Error processing ID: $e');
       return imageFile; // Return original if error occurs
     }
   }
